@@ -2,153 +2,198 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Birthday Memories</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Memories</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background:
-                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url('img/bg.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Pacifico', cursive;
-            color: #fff;
-            text-align: center;
-        }
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('img/bg.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Pacifico', cursive;
+      color: #fff;
+      text-align: center;
+    }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(245, 127, 218, 0.949);
-            padding-top: 100px;
-        }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px rgba(245, 127, 218, 0.949);
+      padding-top: 50px;
+    }
 
-        .card-container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+    .card-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 10px;
+    }
 
-        .card {
-            position: relative;
-            width: 200px;
-            height: 220px;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
+    .card {
+      position: relative;
+      width: 200px;
+      height: 220px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
 
-        .card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
 
-            transition: all 0.3s ease;
-        }
+    .card:hover::before {
+      background: rgba(0, 0, 0, 0.2);
+    }
 
-        .card:hover::before {
-            background: rgba(0, 0, 0, 0.2);
-        }
+    .card h2 {
+      position: relative;
+      z-index: 1;
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
 
-        .card h2 {
-            position: relative;
-            z-index: 1;
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-        }
+    /* Specific backgrounds */
+    .card.memo {
+      background: url('img/vid.jpg') center/cover no-repeat;
+    }
 
-        /* ✅ Add specific backgrounds for each card */
-        .card.memo {
-            background: url('img/vid.jpg') center/cover no-repeat;
-        }
+    .card.image {
+      background: url('img/pic.jpg') center/cover no-repeat;
+    }
 
-        .card.image {
-            background: url('img/pic.jpg') center/cover no-repeat;
-        }
+    .card.confession {
+      background: url('img/confession.jpg') center/cover no-repeat;
+    }
 
-        .card.confession {
-            background: url('img/confession.jpg') center/cover no-repeat;
-        }
+    .bio {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px 30px;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 400px;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.6s ease;
+      backdrop-filter: blur(6px);
+    }
 
-        .bio {
-            margin-top: 40px;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 20px 30px;
-            border-radius: 15px;
-            width: 80%;
-            max-width: 400px;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.6s ease;
-            backdrop-filter: blur(6px);
-        }
+    .bio.show {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-        .bio.show {
-            opacity: 1;
-            transform: scale(1);
-        }
+    .bio h3 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: #fff;
+    }
 
-        .bio h3 {
-            margin-top: 0;
-            font-size: 1.8rem;
-            color: #fff;
-        }
+    .bio p {
+      font-size: 1.1rem;
+      margin: 6px 0;
+    }
 
-        .bio p {
-            font-size: 1.1rem;
-            margin: 6px 0;
-        }
-    </style>
+    /* ================== */
+    /* MOBILE RESPONSIVE */
+    /* ================== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+        padding-top: 40px;
+      }
+
+      .card {
+        width: 150px;
+        height: 180px;
+      }
+
+      .bio {
+        width: 90%;
+        padding: 15px 20px;
+      }
+
+      .bio h3 {
+        font-size: 1.5rem;
+      }
+
+      .bio p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+        padding-top: 30px;
+      }
+
+      .card {
+        width: 120px;
+        height: 160px;
+      }
+
+      .bio h3 {
+        font-size: 1.3rem;
+      }
+
+      .bio p {
+        font-size: 0.9rem;
+      }
+
+      .card-container {
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <h1> Please click on every icon love🌸</h1>
+  <h1>Please click on every icon love🌸</h1>
 
-    <div class="card-container">
-        <a href="vid.html">
-            <div class="card memo">
+  <div class="card-container">
+    <a href="vid.html">
+      <div class="card memo"></div>
+    </a>
+    <div class="card image" onclick="showBio()"></div>
+    <div class="card confession" onclick="showBio()"></div>
+  </div>
 
-            </div>
-        </a>
-        <div class="card image" onclick="showBio()">
+  <div id="bio" class="bio">
+    <h3>🎈 Prasant Tamang 🎈</h3>
+    <p><strong>Age:</strong> 19</p>
+    <p><strong>Hobbies:</strong> Music, Gym, Travel, Coding</p>
+    <p><strong>Confession:</strong> You’re one of a kind — your kindness and laughter make every day better. 💫</p>
+  </div>
 
-        </div>
-        <div class="card confession" onclick="showBio()">
-
-        </div>
-    </div>
-
-    <div id="bio" class="bio">
-        <h3>🎈 Prasant Tamang 🎈</h3>
-        <p><strong>Age:</strong> 19</p>
-        <p><strong>Hobbies:</strong> Music, Gym, Travel, Coding</p>
-        <p><strong>Confession:</strong> You’re one of a kind — your kindness and laughter make every day better. 💫</p>
-    </div>
-
-    <script>
-        function showBio() {
-            const bio = document.getElementById('bio');
-            bio.classList.toggle('show');
-        }
-    </script>
+  <script>
+    function showBio() {
+      const bio = document.getElementById('bio');
+      bio.classList.toggle('show');
+    }
+  </script>
 </body>
 
 </html>
