@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Pacifico', cursive;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/bg.jpg');
+      background-size: cover;
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 3rem;
+      text-shadow: 0 0 15px rgba(245, 127, 218, 0.949);
+    }
+
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .video-card {
+      background: #000;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+      flex: 1 1 200px;
+      max-width: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .video-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+
+    video {
+      width: 100%;
+      height: auto; /* preserves natural aspect ratio */
+      display: block;
+      border-radius: 10px;
+    }
+
+    .video-title {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* ================== */
+    /* MOBILE RESPONSIVE */
+    /* ================== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .video-card {
+        max-width: 200px;
+      }
+
+      .video-title {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .video-grid {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .video-card {
+        max-width: 90%;
+      }
+
+      .video-title {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Video Edits ❤️</h1>
+
+  <div class="video-grid">
+    <!-- 1:1 square videos -->
+    <div class="video-card">
+      <video controls>
+        <source src="img/squareed1.mp4" type="video/mp4">
+      </video>
+      
+    </div>
+    <div class="video-card">
+      <video controls>
+        <source src="img/squared2.mp4" type="video/mp4">
+      </video>
+      
+    </div>
+    <div class="video-card">
+      <video controls>
+        <source src="img/squared3.mp4" type="video/mp4">
+      </video>
+      
+    </div>
+    <div class="video-card">
+      <video controls>
+        <source src="img/squared4.mp4" type="video/mp4">
+      </video>
+     
+    </div>
+   
+
+    <!-- Portrait videos -->
+    <div class="video-card">
+      <video controls>
+        <source src="img/edit1.mp4" type="video/mp4">
+      </video>
+      
+    </div>
+    <div class="video-card">
+      <video controls>
+        <source src="img/port2.mp4" type="video/mp4">
+      </video>
+      
+    </div>
+     <div class="video-card">
+      <video controls>
+        <source src="img/port3.mp4" type="video/mp4">
+      </video>
+      
+    </div>
+  </div>
+</body>
+</html>
